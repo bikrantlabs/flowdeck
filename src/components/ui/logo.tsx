@@ -7,7 +7,7 @@ export const AppLogo = () => {
     <Link href="/">
       <div className="flex items-center gap-1 transition hover:opacity-75">
         <Icons.logo />
-        <p className="text-sm font-semibold">Taskify</p>
+        <p className="text-sm font-semibold">Flowdeck</p>
       </div>
     </Link>
   )

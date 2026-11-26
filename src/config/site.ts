@@ -3,10 +3,10 @@ import { SiteConfig } from "@/types"
 import { env } from "@/env.mjs"
 
 export const siteConfig: SiteConfig = {
-  name: "Taskify",
+  name: "Flowdeck",
   author: "bikrantjung",
   description:
-    "Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique - accomplish it all with Taskify.",
+    "Bring your projects, tasks, and teammates into one clear workspace with Flowdeck.",
   keywords: [
     "Next.js",
     "React",
