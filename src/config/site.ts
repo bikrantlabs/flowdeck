@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
     author: "https://github.com/bikrantlabs",
   },
   links: {
-    github: "https://github.com/BikrantJung/trello-clone",
+    github: "https://github.com/bikrantlabs/flowdeck",
   },
   ogImage: `${env.NEXT_PUBLIC_APP_URL}/og.jpg`,
   icons: [

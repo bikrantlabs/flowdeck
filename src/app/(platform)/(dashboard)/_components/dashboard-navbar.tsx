@@ -8,6 +8,7 @@ import { Icons } from "@/components/icons"
 import { ModeToggle } from "@/components/mode-toggle"
 import { organizationSwitcherAppearance } from "@/styles/organization-switcher-appearance"
 import { userButtonAppearance } from "@/styles/user-button-appearance"
+import { siteConfig } from "@/config/site"
 
 import MobileSidebar from "./mobile-sidebar"
 
@@ -27,7 +28,7 @@ export const DashboardNavbar = () => {
               className="hidden h-9 w-9 rounded-full border border-border/70 bg-background/60 text-muted-foreground hover:border-[#cfc6ee] hover:bg-[#f1effa] hover:text-[#5943c4] dark:hover:bg-white/10 sm:inline-flex"
             >
               <Link
-                href="https://github.com/BikrantJung/trello-clone"
+                href={siteConfig.links.github}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Flowdeck on GitHub"

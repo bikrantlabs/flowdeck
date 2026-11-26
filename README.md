@@ -1,8 +1,8 @@
-# Fullstack Trello Clone: Next.js 14, Server Actions, React, Prisma, Tailwind, PostgreSQL
+# Flowdeck: Collaborative Project Boards
 
-![image](https://raw.githubusercontent.com/bikrantlabs/flowdeck/main/public/demo-img.png)
+![image](https://raw.githubusercontent.com/bikrantlabs/flowdeck/main/public/features/product-board.png)
 
-This is a repository for Fullstack Trello Clone: Next.js 14, Server Actions, React, Prisma, Tailwind, PostgreSQL
+Flowdeck is a collaborative workspace for organizing projects, tasks, and teams. It is built with Next.js 14, Server Actions, React, Prisma, Tailwind CSS, and PostgreSQL.
 
 Key Features:
 
@@ -31,7 +31,7 @@ Key Features:
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/BikrantJung/trello-clone.git
+git clone https://github.com/bikrantlabs/flowdeck
 ```
 
 ### Setup .env file
