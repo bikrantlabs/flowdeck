@@ -25,18 +25,13 @@ Key Features:
 
 ### Prerequisites
 
-**Node version 18.x.x**
+- Docker Desktop with the `docker compose` command
+- A `.env` file configured with the required app and Supabase credentials (see below)
 
 ### Cloning the repository
 
 ```shell
 git clone https://github.com/BikrantJung/trello-clone.git
-```
-
-### Install packages
-
-```shell
-pnpm i
 ```
 
 ### Setup .env file
@@ -53,7 +48,7 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
 //For reference: https://masteringnuxt.com/blog/setting-up-prisma-with-supabase
 DATABASE_URL=
-DIRECT_DATABASE_URL=
+DIRECT_URL=
 
 // Obtain from https://unsplash.com/developers
 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
@@ -61,31 +56,59 @@ NEXT_PUBLIC_UNSPLASH_SECRET_KEY=
 
 ```
 
-### Setup Prisma
+### Build and run with Docker
 
-Add PostgreSQL Database (I used Supabase DB)
+The Docker image uses Node.js 18 and the pnpm version compatible with this project's lockfile. Dependencies run inside Docker, so Node.js and pnpm do not need to be installed on your Mac.
 
-The following command will push the models to database, and geneerate prisma client.
+Build the image:
 
 ```shell
-pnpm db:push
-
+docker compose build
 ```
 
-### Start the app
+Before the first startup, push the Prisma schema to the configured PostgreSQL database and generate the Prisma client:
 
 ```shell
-pnpm dev
+docker compose run --rm app pnpm db:push
+```
+
+Start the development server:
+
+```shell
+docker compose up
+```
+
+Open [http://localhost:3000](http://localhost:3000). The project directory is mounted into the container for live editing, and dependencies are stored in a separate Docker volume.
+
+Stop the application with `Ctrl+C`, or run:
+
+```shell
+docker compose down
+```
+
+For subsequent starts, use `docker compose up`. Rebuild the image after changing the Dockerfile or environment used during the image build:
+
+```shell
+docker compose build
+docker compose up
+```
+
+If dependencies change in `package.json` or `pnpm-lock.yaml`, rebuild and refresh the existing dependency volume:
+
+```shell
+docker compose build
+docker compose run --rm app pnpm install --frozen-lockfile --force
+docker compose up
 ```
 
 ## Available commands
 
-Running commands with npm `pnpm [command]`
+Run application and database commands in the container with `docker compose run --rm app pnpm [command]`.
 
 | command                   | description                                    |
 | :------------------------ | :--------------------------------------------- |
 | `dev`                     | Starts a development instance of the app       |
 | `db:push`                 | Synchronizes current schema.prisma to database |
-| `db:generate`             | Generates types for prisma                     |
+| `db:generate`             | Generates types for Prisma                     |
 | `db:reset`                | Resets the database                            |
 | `ui:add [component_name]` | Installs any component from shadcn/ui library  |

@@ -9,5 +9,6 @@
   "update.enableWindowsBackgroundUpdates": false,
   "update.mode": "none",
   "workbench.enableExperiments": false,
-  "workbench.settings.enableNaturalLanguageSearch": false
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "prisma.pinToPrisma6": true
 }
