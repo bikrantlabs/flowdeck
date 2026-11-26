@@ -4,7 +4,7 @@ import { env } from "@/env.mjs"
 
 export const siteConfig: SiteConfig = {
   name: "Flowdeck",
-  author: "bikrantjung",
+  author: "bikrantlabs",
   description:
     "Bring your projects, tasks, and teammates into one clear workspace with Flowdeck.",
   keywords: [
@@ -19,7 +19,7 @@ export const siteConfig: SiteConfig = {
   ],
   url: {
     base: env.NEXT_PUBLIC_APP_URL,
-    author: "https://github.com/BikrantJung",
+    author: "https://github.com/bikrantlabs",
   },
   links: {
     github: "https://github.com/BikrantJung/trello-clone",

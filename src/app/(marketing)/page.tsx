@@ -1,5 +1,7 @@
 import Link from "next/link"
+import Image from "next/image"
 import {
+  Activity,
   ArrowUpRight,
   Atom,
   Blocks,
@@ -12,6 +14,7 @@ import {
   Plus,
   Server,
   ShieldCheck,
+  type LucideIcon,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -220,6 +223,66 @@ function BoardPreview() {
   )
 }
 
+type FeatureCardProps = {
+  src: string
+  alt: string
+  label: string
+  title: string
+  detail: string
+  icon: LucideIcon
+  tone: string
+  className?: string
+  sizes: string
+}
+
+function FeatureCard({
+  src,
+  alt,
+  label,
+  title,
+  detail,
+  icon: Icon,
+  tone,
+  className,
+  sizes,
+}: FeatureCardProps) {
+  return (
+    <article
+      className={cn(
+        "group flex flex-col overflow-hidden rounded-[1.75rem] border border-[#e5e1d8] bg-white dark:border-white/10 dark:bg-white/[0.035]",
+        className
+      )}
+    >
+      <div className="p-3 pb-0 sm:p-4 sm:pb-0">
+        <div className="relative overflow-hidden rounded-[1.1rem] border border-[#e9e6f0] bg-[#f3f1ec] shadow-[0_18px_36px_-30px_rgba(38,31,72,0.5)] dark:border-white/10 dark:bg-white/[0.06]">
+          <Image
+            src={src}
+            alt={alt}
+            width={1470}
+            height={745}
+            sizes={sizes}
+            className="h-auto w-full object-cover transition duration-500 group-hover:scale-[1.015]"
+          />
+        </div>
+      </div>
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
+        <div className={cn("mb-3 flex items-center gap-2", tone)}>
+          <Icon className="h-4 w-4" aria-hidden="true" />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
+            {label}
+          </span>
+        </div>
+        <h3 className="text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
+          {title}
+        </h3>
+        <p className="mt-2 max-w-[520px] text-sm leading-6 text-[#777288] dark:text-[#b9b3c9]">
+          {detail}
+        </p>
+      </div>
+    </article>
+  )
+}
+
 export default function Home() {
   return (
     <main>
@@ -263,6 +326,78 @@ export default function Home() {
 
           <div className="mx-auto w-full min-w-0 max-w-[700px] px-1 py-0 sm:px-4 sm:py-5 lg:px-0">
             <BoardPreview />
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="features"
+        className="scroll-mt-24 bg-[#fbfaf7] px-5 py-20 text-[#242137] dark:bg-[#1d1b29] dark:text-[#f1eefb] sm:px-8 sm:py-24 lg:px-12"
+      >
+        <div className="mx-auto w-full max-w-[1320px]">
+          <div className="mb-10 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end md:gap-12">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#6c56d9]">
+                Features
+              </p>
+              <h2 className="max-w-[540px] text-3xl font-semibold leading-tight tracking-[-0.035em] sm:text-4xl">
+                A clearer path from first idea to finished work.
+              </h2>
+            </div>
+            <p className="max-w-[520px] text-base leading-7 text-[#696579] dark:text-[#c5c1d0] md:justify-self-end">
+              Keep team projects moving with flexible boards, practical workflows,
+              and separate spaces for the work each organization owns.
+            </p>
+          </div>
+
+          <div className="grid auto-rows-fr gap-4 md:grid-cols-12">
+            <FeatureCard
+              className="md:col-span-7"
+              src="/features/product-board.png"
+              alt="Flowdeck board with Backlog, In progress, In review, and Done lists"
+              label="Project boards"
+              title="See the work take shape."
+              detail="Group tasks into clear stages, keep priorities visible, and move projects forward one card at a time."
+              icon={PanelsTopLeft}
+              tone="text-[#6c56d9]"
+              sizes="(min-width: 768px) 58vw, 100vw"
+            />
+
+            <FeatureCard
+              className="md:col-span-5"
+              src="/features/card-modal-crop.png"
+              alt="Card detail view with a description, activity log, and card actions"
+              label="Card details"
+              title="Keep the context with the work."
+              detail="Open any card for its description, activity, and actions—without losing your place on the board."
+              icon={ArrowUpRight}
+              tone="text-[#b06b32]"
+              sizes="(min-width: 768px) 42vw, 100vw"
+            />
+
+            <FeatureCard
+              className="md:col-span-5"
+              src="/features/org-switcher.png"
+              alt="Organization switcher open with Northstar Studio and Juniper Research workspaces"
+              label="Organization spaces"
+              title="Keep each team’s projects together."
+              detail="Switch between organizations and give every group a home for its boards and day-to-day work."
+              icon={Blocks}
+              tone="text-[#438577]"
+              sizes="(min-width: 768px) 42vw, 100vw"
+            />
+
+            <FeatureCard
+              className="md:col-span-7"
+              src="/features/activity.png"
+              alt="Activity feed showing team members creating and updating cards"
+              label="Activity & momentum"
+              title="Make progress easy to follow."
+              detail="See who created, updated, or moved what—so every next step stays clear for the whole team."
+              icon={Activity}
+              tone="text-[#b06b32]"
+              sizes="(min-width: 768px) 58vw, 100vw"
+            />
           </div>
         </div>
       </section>

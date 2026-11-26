@@ -1,6 +1,6 @@
 # Fullstack Trello Clone: Next.js 14, Server Actions, React, Prisma, Tailwind, PostgreSQL
 
-![image](https://raw.githubusercontent.com/BikrantJung/trello-clone/main/public/demo-img.png)
+![image](https://raw.githubusercontent.com/bikrantlabs/flowdeck/main/public/demo-img.png)
 
 This is a repository for Fullstack Trello Clone: Next.js 14, Server Actions, React, Prisma, Tailwind, PostgreSQL
 
@@ -66,9 +66,12 @@ Build the image:
 docker compose build
 ```
 
-Before the first startup, push the Prisma schema to the configured PostgreSQL database and generate the Prisma client:
+Compose starts a local PostgreSQL 16 database for development. The app container always uses this database, even if your `.env` contains different `DATABASE_URL` or `DIRECT_URL` values. The database is available from your Mac at `localhost:5433`; its data persists in a named Docker volume.
+
+Before the first startup, start the database and push the Prisma schema to it:
 
 ```shell
+docker compose up -d db
 docker compose run --rm app pnpm db:push
 ```
 
@@ -85,6 +88,10 @@ Stop the application with `Ctrl+C`, or run:
 ```shell
 docker compose down
 ```
+
+`docker compose down` keeps the local database data. `docker compose down -v` deletes it.
+
+Production is configured separately: set `DATABASE_URL` and `DIRECT_URL` as secrets in your hosting platform. Do not use the local Compose URLs in production.
 
 For subsequent starts, use `docker compose up`. Rebuild the image after changing the Dockerfile or environment used during the image build:
 

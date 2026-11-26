@@ -14,38 +14,40 @@ import MobileSidebar from "./mobile-sidebar"
 export const DashboardNavbar = () => {
   return (
     <>
-      <nav className="fixed top-0 z-50 flex h-14 w-full items-center border-b bg-background px-4 shadow-sm">
-        {/* TODO: Mobile Dashboard Sidebar */}
-        <MobileSidebar />
-        {/*  */}
-        <div className="mx-auto flex w-full items-center justify-between md:max-w-screen-2xl">
-          <div className="hidden md:flex">
-            <AppLogo />
-          </div>
-          <CreateBoardButton />
-        </div>
-        <div className="ml-auto flex items-center gap-x-4">
-          <Button
-            variant={"link"}
-            asChild
-            size="sm"
-            className="border hover:bg-secondary"
-          >
-            <Link
-              href="https://github.com/BikrantJung/trello-clone"
-              target="_blank"
+      <nav className="fixed top-0 z-50 flex h-14 w-full items-center border-b border-[#e5e1f0] bg-background/90 px-3 backdrop-blur-xl dark:border-white/10 sm:px-4">
+        <div className="mx-auto flex w-full min-w-0 items-center gap-2 md:max-w-screen-2xl md:gap-4">
+          <MobileSidebar />
+          <AppLogo compact />
+
+          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <Button
+              variant="ghost"
+              asChild
+              size="icon"
+              className="hidden h-9 w-9 rounded-full border border-border/70 bg-background/60 text-muted-foreground hover:border-[#cfc6ee] hover:bg-[#f1effa] hover:text-[#5943c4] dark:hover:bg-white/10 sm:inline-flex"
             >
-              <Icons.github className="h-4 w-4 stroke-[1.8px]" />
-            </Link>
-          </Button>
-          <ModeToggle />
-          <OrganizationSwitcher
-            hidePersonal
-            afterSelectOrganizationUrl="/organization/:id"
-            afterCreateOrganizationUrl="/organization/:id"
-            appearance={organizationSwitcherAppearance}
-          />
-          <UserButton afterSignOutUrl="/" appearance={userButtonAppearance} />
+              <Link
+                href="https://github.com/BikrantJung/trello-clone"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Flowdeck on GitHub"
+              >
+                <Icons.github className="h-4 w-4 stroke-[1.8px]" />
+              </Link>
+            </Button>
+            <div className="grid h-9 w-9 place-items-center rounded-full border border-border/70 bg-background/60 [&_button]:h-8 [&_button]:w-8 [&_button]:rounded-full">
+              <ModeToggle />
+            </div>
+            <div className="flex h-9 items-center rounded-full border border-border/70 bg-background/60 px-1">
+              <OrganizationSwitcher
+                hidePersonal
+                afterSelectOrganizationUrl="/organization/:id"
+                afterCreateOrganizationUrl="/organization/:id"
+                appearance={organizationSwitcherAppearance}
+              />
+            </div>
+            <UserButton afterSignOutUrl="/" appearance={userButtonAppearance} />
+          </div>
         </div>
       </nav>
       {/* A div with height equals to nav to push other components downwards. */}
