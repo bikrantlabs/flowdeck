@@ -73,7 +73,16 @@ Before the first startup, start the database and push the Prisma schema to it:
 ```shell
 docker compose up -d db
 docker compose run --rm app pnpm db:push
+docker compose run --rm app pnpm db:seed
 ```
+
+The public `GET /api/cron` endpoint performs a small read from the `CronProbe`
+table and responds with plain-text `ok` when the database is reachable. It does
+not require authentication or a token. Before deploying this endpoint, apply
+the Prisma schema and seed the `CronProbe` row against the database used by the
+deployed app; production database credentials remain configured in the hosting
+platform. Run `pnpm exec prisma db push` and `pnpm db:seed` as a one-off deployment
+step with the production `DATABASE_URL` and `DIRECT_URL` available.
 
 Start the development server:
 
@@ -117,5 +126,6 @@ Run application and database commands in the container with `docker compose run 
 | `dev`                     | Starts a development instance of the app       |
 | `db:push`                 | Synchronizes current schema.prisma to database |
 | `db:generate`             | Generates types for Prisma                     |
+| `db:seed`                 | Adds the sample cron probe row                 |
 | `db:reset`                | Resets the database                            |
 | `ui:add [component_name]` | Installs any component from shadcn/ui library  |

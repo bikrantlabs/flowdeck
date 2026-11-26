@@ -12,6 +12,7 @@
     "ui:add": "pnpm dlx shadcn-ui@latest add",
     "db:generate": "prisma generate",
     "db:push": "prisma db push && pnpm db:generate",
+    "db:seed": "node prisma/seed.cjs",
     "db:reset": "prisma migrate reset && pnpm db:push",
     "postinstall": "prisma generate"
   },
