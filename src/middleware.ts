@@ -5,7 +5,8 @@ import { authMiddleware, redirectToSignIn } from "@clerk/nextjs"
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
-  publicRoutes: ["/", "/tech-stack", "/api/cron"],
+  ignoredRoutes: ["/api/cron(.*)"],
+  publicRoutes: ["/", "/tech-stack", "/api/cron(.*)"],
   afterAuth(auth, req) {
     if (req.nextUrl.pathname === "/api/cron") {
       return NextResponse.next()
